@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>Table Tennis</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+        <link rel="icon" type="image/png" href="{% static '/images/main_logo.png' %}">
+	</head>
+
+    <style>
+
+    #logo {
+        height:50px;
+ }
+    </style>
+	<body>
+
+
+			<header id="header" class="alt">
+
+                <img id="logo" src="{% static '/images/main_logo.png' %}" class="img-responsive">
+				<a href="#menu" class="toggle"><span>Menu</span></a>
+			</header>
+
+
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="Login/login">Login</a></li>
+					<li><a href="Login/register">Register</a></li>
+                    <li><a href="Product/buy">Browse Products</a></li>
+				</ul>
+			</nav>
+
+
+			<section id="banner">
+				<div class="inner">
+					<h1 style="padding-top: 100px; padding-left: 100px; font-size: 70px">Table Tennis Sports</h1>
+                    <p style="padding-left: 130px; font-size: 25px">If you want to win in Table Tennis <br> You must hit every ball with a purpose! </p>
+				</div>
+			</section>
+
+
+
+        <script src="{% static 'js/jquery.min.js' %}"></script>
+        <script src="{%  static 'js/jquery.scrolly.min.js' %}"></script>
+        <script src="{% static 'js/jquery.scrollex.min.js' %}"></script>
+        <script src="{%  static 'js/skel.min.js' %}"></script>
+        <script src="{% static 'js/util.js' %}"></script>
+        <script src="{% static 'js/main2.js' %}"></script>
+
+	</body>
+</html>

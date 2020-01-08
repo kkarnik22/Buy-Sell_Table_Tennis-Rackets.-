@@ -1,0 +1,64 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Buy Products</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="icon" type="image/png" href="{% static '/images/main_logo.png' %}">
+</head>
+
+<style>
+
+    .navbar{
+            padding-right: 40px;
+        }
+
+        li{
+
+            padding-top: 10px;
+            padding-right: -10px;
+            font-family: monospace, sans-serif;
+            font-size: 14px;
+        }
+
+    .card-body{
+        margin-right: 20px;
+        padding-right: 20px;
+
+    }
+    img {
+        display: inline;
+        margin-left: auto;
+        margin-right: auto;
+        width: 280px;
+        height: 300px;
+        padding-bottom: 20px;
+
+      }
+
+
+     </style>
+
+<body>
+
+<form enctype="multipart/form-data" method="POST" action="#">
+{% csrf_token %}
+
+
+    <div class="container">
+    <h1 style="padding-top: 180px; padding-left: 250px; font-size: 80px;">THANK YOU FOR <span style="padding-left: 40px; font-family: 'Titillium Web', Arial, Helvetica, sans-serif">PURCHASING</span></h1>
+        <div  style="padding-top: 20px; padding-left: 400px;">
+    <button type="button" class="btn btn-info" style="font-size: 30px" onclick="window.location.href='login_buy'">Continue Shopping?</button>
+    </div>
+</div>
+</form>
+</body>
+</html>

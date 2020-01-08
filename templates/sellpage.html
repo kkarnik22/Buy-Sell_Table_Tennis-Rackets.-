@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sell Product</title>
+
+	 <link rel="stylesheet" href="{% static 'css/bluma.css' %}">
+     <script src="{% static 'js/bluma.js' %}"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="icon" type="image/png" href="{% static '/images/main_logo.png' %}">
+</head>
+
+<style>
+    #edit_h2{
+        font-family: 'Titillium Web', Arial, Helvetica, sans-serif;
+        padding-bottom: 5px;
+        padding-top: 20px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 60px;
+    }
+
+    body {
+        background-color: whitesmoke;
+    }
+
+</style>
+<body>
+
+    <form enctype="multipart/form-data" method="POST" action="#">
+    {% csrf_token %}
+        {% if user.is_authenticated %}
+
+        <div class="container">
+        <div class="columns is-mobile">
+            <div class="column is-half is-offset-one-quarter">
+                <div class="content"><h2 id="edit_h2" class="display-1">Sell Your Stuff</h2></div>
+                <form action="{% url 'sell' %}" method="post">
+                    {% csrf_token %}
+
+                    {% for non_field_error in form.non_field_errors %}
+                        <p class="help is-danger">{{ non_field_error }}</p>
+                    {% endfor %}
+
+                    {% for field in form %}
+                        <div class="field">
+                         <label for="{{ field.id_for_label }}" class="label" style="padding: 5px">
+                                {{ field.label }}
+                         </label>
+                            {{ field }}
+
+                        {% for error in field.errors %}
+                            <p class="help is-danger">{{ error }}</p>
+                        {% endfor %}
+                        </div>
+                    {% endfor %}
+                <br>
+                    <input type="submit" value="Sell your product" class="button is-dark">
+
+                </form>
+            </div>
+        </div>
+    </div>
+    </form>
+      {%  else %}
+
+        <div class="container">
+        <h1 style="font-size: 100px; text-align: center; padding-top: 100px"> Please login </h1>
+            <div style="padding-left: 420px; padding-top: 50px; ">
+        <button type="button" class="btn btn-outline-primary" style="font-size: 30px" onclick="window.location.href='../Login/login'">Go Back To Login?</button>
+            </div>
+        </div>
+
+
+ {% endif %}
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="{% static 'fonts/material-icon/css/material-design-iconic-font.min.css' %}">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+<form action="update_product" method="post">
+    {% csrf_token %}
+    <div class="main">
+
+        <section class="signup">
+            <!-- <img src="images/signup-bg.jpg" alt=""> -->
+            <div class="container">
+                <div class="signup-content">
+                    <form method="POST" id="signup-form" class="signup-form">
+                        <h2 class="form-title">Create account</h2>
+
+                        <div class="form-group">
+                            <input type="text" class="form-input" name="name_seller" placeholder="Name of Seller"  onkeypress="return /[a-z]/i.test(event.key)" required/>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-input" name="address" placeholder="Address" onkeypress="return /[a-z]/i.test(event.key)" required/>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-input" name="name_bat"placeholder="Bat Name" required/>
+                        </div>
+
+                        <br>
+                        <div class="form-group">
+                            <button class="btn btn-primary" type="submit">Update</button>
+                        </div>
+                    </form>
+                    <p class="loginhere">
+                        Have already an account ? <a href="login" class="">Login here</a>
+                    </p>
+
+                </div>
+            </div>
+
+        </section>
+    </div>
+    </form>
+
+  <div>
+        {% for message in messages %}
+        <script>
+             alert('{{ message }}');
+        </script>
+        {% endfor %}
+    </div>
+
+    <!-- JS -->
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'js/main1.js' %}"></script>
+
+</body>
+</html>

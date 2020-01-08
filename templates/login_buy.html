@@ -1,0 +1,137 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Buy Products</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="icon" type="image/png" href="{% static '/images/main_logo.png' %}">
+</head>
+
+<style>
+
+    .navbar{
+            padding-right: 40px;
+        }
+
+        li{
+
+            padding-top: 10px;
+            padding-right: -10px;
+            font-family: monospace, sans-serif;
+            font-size: 14px;
+        }
+
+    .card-body{
+        margin-right: 20px;
+        padding-right: 20px;
+
+    }
+    img {
+        display: inline;
+        margin-left: auto;
+        margin-right: auto;
+        width: 280px;
+        height: 300px;
+        padding-bottom: 20px;
+
+      }
+
+
+     </style>
+
+<body>
+
+<form enctype="multipart/form-data" method="POST" action="#">
+{% csrf_token %}
+{{ form.as_p }}
+
+    {% if user.is_authenticated %}
+
+
+    <nav class="navbar bg-dark navbar-dark">
+        <img src="/static/images/buy_logo.png" style="width: 60px; height: 70px; margin-left: 20px" class="navbar-brand">
+        <a class="navbar-brand" href="#">Welcome {{ user.first_name }} {{ user.last_name }}</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav ">
+                <li class="nav-item ml-auto">
+                    <a class="nav-link" href="sell" target="_blank">Sell Stuff</a>
+                    <a class="nav-link" href="stuff" target="_blank">Check your products</a>
+                    <a class="nav-link" href="/">Logout</a>
+
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <br>
+    <br>
+
+    <div class="container">
+           <div class="row">
+
+               {% for i in obj %}
+
+                    <div class="col-4">
+
+
+
+                       <div class="card" style="width: 350px;">
+                        <img src="{{ MEDIA_URL }}{{ i.photo}}" class="card-img-top">
+                        <div class="card-body">
+
+
+                            <p class="card-title"><b>Name:</b> {{ i.name_seller }}</p>
+                            <p class="card-title"><b>Bat Name:</b> {{ i.name_bat }}</p>
+                            <p  class="card-text"><b>Seller Address:</b> {{ i.address }}</p>
+                            <p class="card-text"><b>Model No:</b> {{ i.model_no }}</p>
+                            <p class="card-text"><b>Price</b> ₹{{ i.price }}</p>
+                            <p><b>Date:</b> {{ i.date_make }}</p>
+                             <p class="card-text"><b>Description</b> {{ i.desc }}</p>
+                            <br>
+                             <a class="btn btn-primary" href="{% url 'thanks'%}?email={{ i.email }}" >BUY</a>
+
+                         </div>
+                    </div>
+                    <br> <br> <br> <br>
+                </div>
+
+                {% endfor %}
+           </div>
+    </div>
+
+        <div>
+        {% for message in messages %}
+        <script>
+             alert('{{ message }}');
+        </script>
+        {% endfor %}
+ </div>
+
+
+      {%  else %}
+
+        <div class="container">
+        <h1 style="font-size: 100px; text-align: center; padding-top: 100px"> Please login </h1>
+            <div style="padding-left: 420px; padding-top: 50px; ">
+         <a class="btn btn-primary" href="../Login/login" >BUY</a>
+            </div>
+        </div>
+
+
+ {% endif %}
+
+</form>
+</body>
+
+</html>
